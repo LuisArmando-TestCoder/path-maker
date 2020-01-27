@@ -1,0 +1,9 @@
+canvas {
+  display: block;
+}
+
+.chosen-traveler {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
