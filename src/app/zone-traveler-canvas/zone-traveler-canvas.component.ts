@@ -41,7 +41,7 @@ export class ZoneTravelerCanvasComponent implements OnInit {
   }
 
   private makeUrlTravel(obj): string {
-    return `travel/${this.mapTravel.toString(obj)}`
+    return `travel?q=${this.mapTravel.toString(obj)}`;
   }
 
   private pushTraveler({x, y}) {
@@ -63,7 +63,7 @@ export class ZoneTravelerCanvasComponent implements OnInit {
     return travelers;
   }
 
-  stringTravel: string = this.route.snapshot.paramMap.get('stringTravel') || '';
+  stringTravel: string = this.route.snapshot.queryParams.q || '';
   jsonTravel = this.mapTravel.toJSON(this.stringTravel);
   travelers: object[] = [...this.pasteManyTravelers(this.jsonTravel)];
   zones: any = this.pasteManyZones(this.jsonTravel);
