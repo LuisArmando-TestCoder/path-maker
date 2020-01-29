@@ -63,6 +63,10 @@ export class ZoneTravelerCanvasComponent implements OnInit {
     return travelers;
   }
 
+  private hardCopy(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
   stringTravel: string = this.route.snapshot.queryParams.q || '';
   jsonTravel = this.mapTravel.toJSON(this.stringTravel);
   travelers: object[] = [...this.pasteManyTravelers(this.jsonTravel)];
@@ -111,7 +115,7 @@ export class ZoneTravelerCanvasComponent implements OnInit {
     this.pushZone({x, y});
 
     this.urlTravel = this.makeUrlTravel({
-      travelers: this.resetZoneIndex([...this.travelers]), zones: this.zones
+      travelers: this.resetZoneIndex(this.hardCopy(this.travelers)), zones: this.zones
     });
 
     window.history.pushState('', '', this.urlTravel);
